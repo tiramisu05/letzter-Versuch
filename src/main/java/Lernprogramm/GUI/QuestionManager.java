@@ -24,22 +24,22 @@ import java.util.logging.Logger;
  */
 public class QuestionManager {
 
-    private static final String _csvpath = "res/testFragen.csv";
-
+    private static String _csvpath;
     private List<Frage> _fragenliste;
-    private Iterator<Frage> _fragenIt;
-
+    private final Iterator<Frage> _fragenIt;
     private Frage _currentQuestion;
 
-
-
-    public QuestionManager() {
+    //Konstruktor
+    public QuestionManager(String csvpath) { 
+        _csvpath = csvpath;
         List<String[]> zeilenliste = readCSVDatei();
         _fragenliste = createfragenliste(zeilenliste);
         Collections.shuffle(_fragenliste); // Fragen in zufälliger reihenfolge
+        _fragenliste = _fragenliste.subList(0, 10);
         _fragenIt = _fragenliste.iterator();
-    }
 
+    }
+    //Methode
     public Frage getAndLoadNextQuestion() {
         // TODO do something when there are no more questions.
         if (_fragenIt.hasNext()) {
@@ -50,11 +50,11 @@ public class QuestionManager {
         }
         return _currentQuestion;
     }
-
+    //Methode
     public Frage getCurrentQuestion(int questionUmber) {
         return _fragenliste.get(questionUmber);
     }
-
+    //Methode   
     public Frage getCurrentQuestion() {
         if (_currentQuestion == null && _fragenIt.hasNext()) {
             _currentQuestion = getAndLoadNextQuestion();
@@ -62,13 +62,14 @@ public class QuestionManager {
 
         return _currentQuestion;
     }
-
+    //Methode
     public void printAllQuestions() {
         for (Frage frage : _fragenliste) {
             frage.PrintoutQuestion();
+            //Extended for Loop geht die Liste durch und packt Inhalt in das Variable frage.
         }
     }
-
+    //Methode
     private static List<Frage> createfragenliste(List<String[]> zeilenliste) {
 
         List<Frage> outlist = new ArrayList<Frage>();
@@ -81,7 +82,7 @@ public class QuestionManager {
 
         return outlist;
     }
-
+    //Methode
     private static List<String[]> readCSVDatei() {
 
         List<String[]> outList = new ArrayList<String[]>();

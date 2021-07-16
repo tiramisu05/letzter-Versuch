@@ -7,22 +7,19 @@ import Lernprogramm.GUI.QuestionManager;
  *
  * @author Meike
  */
-
-//Die "Programm"-Klasse startet die Benutzeroberfläche und den QuestionManager (Verwaltung der Fragen).
-
-public class Programm {
+public class Programm { //Äquivalent zu class Addressbook
 
     private ProgrammGUI pprogrammGUI;
 
     public Programm() {
 
-        QuestionManager qManager = new QuestionManager();
-        //Die Instanz qManager wird erzeugt und damit sozusagen die Logik des Programms gestartet.
-        pprogrammGUI = new ProgrammGUI(this, qManager);
-        //Die Instanz pprogrammGUI wird erzeugt und damit eine grafische Benutzeroberfläche gestartet.
+        QuestionManager qManagerBotanik = new QuestionManager("res/FragenBotanik.csv");
+        QuestionManager qManagerChemie = new QuestionManager("res/FragenChemie.csv");
+
+        pprogrammGUI = new ProgrammGUI(this, qManagerBotanik, qManagerChemie);
+
     }
 
-    //Wird diese Methode aufgerufen, schließt sich die grafische Oberfläche.
     public void schließen() {
         pprogrammGUI.dispose();
     }

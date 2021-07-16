@@ -1,6 +1,5 @@
 package Lernprogramm.GUI;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -33,26 +32,23 @@ public class Frage {
 
     }
 
-
-    public boolean isCorrectAnswer(String answer){
+    public boolean isCorrectAnswer(String answer) {
         return answer.equalsIgnoreCase(_richtigeAntwort);
     }
 
-    public List<String> getAnswers(){
+    public List<String> getAnswers() {
         return _antworten;
     }
 
-
     public void PrintoutQuestion() {
         System.out.println("____________________________");
-        System.out.println("Frage: "+_fragestellung);
+        System.out.println("Frage: " + _fragestellung);
         Iterator<String> it = _antworten.iterator();
         while (it.hasNext()) {
-            System.out.println("Antwort: "+it.next());
+            System.out.println("Antwort: " + it.next());
         }
 
     }
-
 
     public String getQuestion() {
         return _fragestellung;

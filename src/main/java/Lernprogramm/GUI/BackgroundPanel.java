@@ -1,4 +1,4 @@
-package Startbild;
+package Lernprogramm.GUI;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,32 +13,38 @@ import javax.swing.JPanel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author Meike
  */
+
+
 class BackgroundPanel extends JPanel {
+        
+        private static final long serialVersionUID = 1L;
+	private Image img;
 
-//        private static final long serialVersionUID = 1L;
-    private Image img;
-
-    public BackgroundPanel() {
-
-        try {
+	public BackgroundPanel() {
+            
+            try {
             img = ImageIO.read(new File("Bild700.jpg"));
-        } catch (IOException ex) {
+            } catch (IOException ex) {
             System.out.println("Bild konnte nicht geladen werden");
+            }
         }
-    }
+        
+        
+	@Override
+	protected void paintComponent(Graphics g) {
+		
+		super.paintComponent(g);
+		g.drawImage(img, 0, 0, this);
+        }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.drawImage(img, 0, 0, this);
-    }
+	public Image getBackgroundImage() {
+		return img;
+	}
 
-    public Image getBackgroundImage() {
-        return img;
-    }
 
 }
